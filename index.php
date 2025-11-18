@@ -1,5 +1,6 @@
 <?php
 
+
 $request_uri = $_SERVER['REQUEST_URI'];
 $request_method = $_SERVER['REQUEST_METHOD'];
 
@@ -17,6 +18,21 @@ $params = array_slice($uri_parts, 1);
 
 // Set JSON header
 header('Content-Type: application/json');
+// CORS headers
+$allowed_origins = ['http://localhost:5173'];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+}
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+// Handle preflight OPTIONS request
+if ($request_method === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 switch ($endpoint) {
     case '':
