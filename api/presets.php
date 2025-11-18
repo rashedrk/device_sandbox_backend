@@ -29,7 +29,6 @@ class PresetAPI
                 $this->createPreset();
                 break;
 
-            case 'PUT':
             case 'PATCH':
                 if (!empty($params[0])) {
                     $this->updatePreset($params[0]);
@@ -84,7 +83,7 @@ class PresetAPI
             http_response_code(200);
             echo json_encode([
                 'success' => true,
-                'count' => count($presets),
+                'message' => 'All presets fetched successfully',
                 'data' => $presets
             ]);
         } catch (PDOException $e) {
@@ -116,6 +115,7 @@ class PresetAPI
                 http_response_code(200);
                 echo json_encode([
                     'success' => true,
+                    'message' => 'Preset fetched successfully',
                     'data' => $preset
                 ]);
             } else {

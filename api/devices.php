@@ -47,7 +47,7 @@ class DeviceAPI
             http_response_code(200);
             echo json_encode([
                 'success' => true,
-                'count' => count($devices),
+                'message' => 'Devices fetch successfully',
                 'data' => $devices
             ]);
         } catch (PDOException $e) {
