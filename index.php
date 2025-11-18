@@ -6,11 +6,7 @@ $request_method = $_SERVER['REQUEST_METHOD'];
 $uri_parts = explode('/', trim($request_uri, '/'));
 
 // Remove the project folder name from the URI parts
-if (isset($uri_parts[0]) && $uri_parts[0] === 'device_sandbox_backend') {
-    array_shift($uri_parts);
-}
-
-if (isset($uri_parts[0]) && $uri_parts[0] === 'index.php') {
+if (isset($uri_parts[0]) && ($uri_parts[0] === 'index.php' || $uri_parts[0] === 'device_sandbox_backend')) {
     array_shift($uri_parts);
 }
 
