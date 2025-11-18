@@ -23,16 +23,18 @@ switch ($endpoint) {
         echo json_encode([
             'message' => 'API is working',
             'version' => '1.0',
-            'endpoints' => [
-                'GET /devices' => 'Get all devices',
-                'GET /devices/{id}' => 'Get device by ID'
-            ]
         ]);
         break;
 
     case 'devices':
         require_once __DIR__ . '/api/devices.php';
         $api = new DeviceAPI();
+        $api->handleRequest($request_method);
+        break;
+
+    case 'presets':
+        require_once __DIR__ . '/api/presets.php';
+        $api = new PresetAPI();
         $api->handleRequest($request_method, $params);
         break;
 
