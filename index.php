@@ -19,7 +19,7 @@ $params = array_slice($uri_parts, 1);
 // Set JSON header
 header('Content-Type: application/json');
 // CORS headers
-$allowed_origins = ['http://localhost:5173'];
+$allowed_origins = ['http://localhost:5173',"https://device-sandbox.vercel.app/"];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
 if (in_array($origin, $allowed_origins)) {
